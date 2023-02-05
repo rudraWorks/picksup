@@ -1,0 +1,126 @@
+<%- include('../partials/upper.ejs') %>
+
+<style>
+    #loginDiv{
+        /* border: 1px solid black; */
+        width: 300px;
+        max-width: 80%;
+        height: fit-content;
+        margin-top: 40px;
+        border-radius: 20px;
+        padding: 5px;
+        -webkit-box-shadow: -1px 4px 31px -8px rgba(0,0,0,0.42);
+        -moz-box-shadow: -1px 4px 31px -8px rgba(0,0,0,0.42);
+        box-shadow: -1px 4px 31px -8px rgba(0,0,0,0.42);
+        /* padding: 5px; */
+    }
+    form{
+        margin-top: 20px;
+        width: 70%;
+        margin-bottom: 30px;
+    }
+    .formItem{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+    }
+
+    .formItem>input{
+        padding-left: 10px;
+        padding-right: 10px;
+        border-radius: 10px;
+        outline: none;
+    }
+    #submitBtn{
+        cursor: pointer;
+        background-color: skyblue;
+    }
+    #submitBtn:hover{
+        background-color: lightgreen;
+    }
+    .info{
+        color: red;
+        font-size: 12px;
+    }
+</style>
+<center>
+    <div id="loginDiv">
+        <h1>Signup</h1>
+        <span style="cursor: pointer;">Already registered? <u><a href="/login">login</a></u></span>
+        <form id="form" action="">
+            <div class="formItem">
+                <span>Username</span>
+                <input name="username" type="text">
+                <span class="info" id="infoUsername"></span>
+            </div>
+            <div class="formItem">
+                <span>Full Name</span>
+                <input name="fullname" type="text">
+                <span class="info" id="infoFullname"></span>
+
+            </div>
+            <div class="formItem">
+                <span>Email</span>
+                <input name="email" type="email">
+                <span class="info" id="infoEmail"></span>
+
+            </div>
+            <div class="formItem">
+                <span>Password</span>
+                <input name="password" type="password">
+                <span class="info" id="infoPassword"></span>
+                
+            </div>
+            <div class="formItem"><br>
+                <input type="submit" id="submitBtn">
+            </div>
+        </form>
+    </div>
+</center>
+
+<script>
+    let form=document.getElementById('form')
+    let infoUsername=document.getElementById('infoUsername')
+    let infoEmail=document.getElementById('infoEmail')
+    let infoPassword=document.getElementById('infoPassword')
+    let infoFullname=document.getElementById('infoFullname')
+
+    form.addEventListener('submit',async(e)=>{
+        e.preventDefault()
+        
+        infoUsername.textContent=""
+        infoEmail.textContent=""
+        infoPassword.textContent=""
+        infoFullname.textContent=""
+        
+        let username=e.target.username.value
+        let password=e.target.password.value
+        let fullname=e.target.fullname.value
+        let email=e.target.email.value
+
+        let data = await fetch('/register',{
+                method:"POST",
+                headers:{"Content-Type":"application/json"},
+                body:JSON.stringify({username,password,email,fullname})
+            })
+            let res = await data.json()
+            if(res.success){
+                return location.href="/"
+            }
+            else {
+                if(res.errorCode=='username')
+                infoUsername.textContent=res.message
+
+                if(res.errorCode=='fullname')
+                infoFullname.textContent=res.message
+
+                if(res.errorCode=='email')
+                infoEmail.textContent=res.message
+
+                if(res.errorCode=='password')
+                infoPassword.textContent=res.message
+            }
+    })
+</script>
+
+<%- include('../partials/lower.ejs') %>

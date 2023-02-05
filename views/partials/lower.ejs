@@ -1,0 +1,19 @@
+   
+   </div>
+   <br><br>
+  </body>
+
+  <script>
+    // alert(location.href)
+    let pathname=new URL (location.href).pathname.slice(1)
+    console.log(pathname)
+    try{
+    document.getElementById(pathname).style.border="1px solid black"
+    }
+    catch(e){}
+    if(pathname=='login' || pathname=='register')
+    document.getElementById('login-signup').style.border="1px solid black"
+
+    
+  </script>
+</html>

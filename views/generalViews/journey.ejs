@@ -1,0 +1,72 @@
+<%- include('../partials/upper.ejs') %>
+
+<style>
+    #journeyDiv{
+        width: 90%;
+        background-color: rgb(36, 34, 34);
+        margin-top:30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 30px;
+    }
+    #imageContainer{
+        height: 200px;
+        /* height: fit-content; */
+        overflow: hidden;
+        width: 100%;
+
+    }
+    #heading{
+       font-size: 60px;color: rgb(255, 255, 255); 
+    }
+    #contentDiv{
+            border-left: 2px solid white;
+            width: 90%;
+            color: white;
+            padding-left: 30px;
+            text-align: left;
+            
+    }
+    @media (max-width:600px) {
+        #heading{
+            font-size: 40px;
+        }
+        #imageContainer{
+            height: 100px;
+        }
+   
+    }
+</style>
+
+<center>
+    <div id="journeyDiv">
+        <div id="imageContainer">
+            <img style="width: 100%;" src="assets/grasspic.jpg" alt="">
+        </div>
+        <div >
+            <h1 id="heading">The Journey</h1>
+        </div>
+        <div>
+           <div id="contentDiv">
+               <h4>THE ROOTS</h4>
+               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis aut nisi impedit rerum quisquam sint quam delectus, porro ipsa accusamus neque voluptate et eaque earum quidem est aliquam modi! Eos.
+               <hr>
+               <h4>CHAPTER I</h4>
+               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo repellendus expedita minus vel ea aliquam sapiente quisquam, a iure tenetur dolor nisi sunt explicabo eveniet dicta accusamus totam vitae labore!
+                <hr>
+               <h4>CHAPTER II</h4>
+               Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto distinctio, soluta iste repellat reiciendis aliquid.
+                <hr>
+               <h4>KICKSUP</h4>
+               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem, cum. Assumenda, incidunt, quia officiis voluptatibus ad repellat consectetur dolores in debitis doloribus sit veniam provident repellendus voluptas, maiores facere amet?
+           </div>
+        </div>
+
+    </div>
+</center>
+
+    
+
+<%- include('../partials/lower.ejs') %>

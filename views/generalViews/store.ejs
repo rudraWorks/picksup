@@ -1,0 +1,263 @@
+<%- include('../partials/upper.ejs') %>
+
+<style>
+    #storeContainer{
+        display: flex;
+        /* background-color: skyblue; */
+        /* background-color: gray; */
+        /* min-height: 100%; */
+        height:fit-content;
+        padding: 10px;
+        justify-content: space-evenly;
+        width: 95%;
+        margin-top: 40px;
+        /* flex-wrap: wrap; */
+    }
+    #storeContainer>div{
+            -webkit-box-shadow: -1px 4px 31px -8px rgba(0,0,0,0.42);
+            -moz-box-shadow: -1px 4px 31px -8px rgba(0,0,0,0.42);
+            box-shadow: -1px 4px 31px -8px rgba(0,0,0,0.42);
+
+            border-radius: 25px;
+            padding: 10px;
+            height: auto;
+
+    }
+
+
+    #filter{
+        /* background-color: red; */
+        height: 100%;
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #items{
+        /* background-color: green; */
+        height: 100%;
+        width: 55%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #cart{
+        /* background-color: skyblue; */
+        height: 100%;
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    @media (max-width:600px) {
+
+        #storeContainer{
+            flex-direction: column;
+            align-items: center;
+            height: fit-content;
+        }
+        #storeContainer>div{
+            width: 90%;
+            margin: 15px;
+            /* height: 250px; */
+            height: fit-content;
+        }
+
+    }
+    .divTitle{
+        font-size: 20px;
+        float: left;
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 10px;
+        /* flex-direction: column;         */
+    }
+    .divTitle>div{
+        margin-left: auto;
+    }
+    #filterCategories{
+        /* background-color: gray; */
+        text-align: left;
+        padding: 8px;
+    }
+    #filterCategories>div{
+        margin-bottom: 5px;
+    }
+
+    #color>div>div{
+        width: 25px;
+        height: 25px;
+        display: inline-block;
+        margin-right: 10px;
+    }
+    #color>div>div>input{
+        margin-left: 25%;
+        margin-top: 25%;
+
+    }
+    #type{
+        text-align: left;
+        padding: 8px;
+    }
+    .shoeCard{
+        width: 150px;
+        height: 170px;
+        background-color:rgba(255, 255, 255, 0.925);
+        overflow: hidden;
+        margin: 10px;
+        border: 1px solid black;
+        color: rgb(0, 0, 0);
+    }
+    #allShoes{
+        /* background-color: red; */
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+    
+<center>
+
+<div>
+    <div id="storeContainer">
+        
+        <div id="filter">
+             <div class="divTitle">
+                <span>FILTER</span>
+                <div><img width="20" src="assets/filter.png" alt=""></div>
+             </div>       
+             <div id="filterCategories">
+                <div id="cost">
+                    <span style="font-size: 20px;">Cost</span>
+                    <div><input type="checkbox"> <span>Rs 1500-4000</span></div>
+                    <div><input type="checkbox"> <span>Rs 1500-4000</span></div>
+                    <div><input type="checkbox"> <span>Rs 1500-4000</span></div>
+                </div>
+
+                <div id="color">
+                    <span style="font-size: 20px;"> Color</span>
+                    <div> 
+                        <div style="background-color: red;"><input type="checkbox"></div>
+                        <div style="background-color: blue;"><input type="checkbox"></div>
+                        <div style="background-color: yellow;"><input type="checkbox"></div>
+                        <div style="background-color: green;"><input type="checkbox"></div>
+                        <div style="background-color: orange;"><input type="checkbox"></div>
+                    </div>
+                </div>  
+             </div>   
+            
+             <div id="type">
+                <span style="font-size:20px;">Type</span>
+                <div><input type="checkbox"> <span>Sneakers</span></div>
+                <div><input type="checkbox"> <span>Loafers</span></div>
+             </div>
+
+             <div id="submit">
+                <button style="background-color: black;color: white;padding: 5px;cursor: pointer;">Apply</button>
+             </div>
+
+        </div>  
+
+        <div id="items">
+             <div class="divTitle">
+                <span>SHOES</span>
+                <div style="width: 200px;display: flex; align-items: center;">
+                    <input placeholder="search item.." type="text" style="width: 80%;padding: 10px;margin-right: 10px;font-size: 15px; border: 1px solid black; border-radius: 10px;outline: none; height: 20px;">
+                    <img style="width:25px;cursor: pointer;" src="assets/search.png"  alt="">
+                </div>     
+             </div>
+            <div id="allShoes">
+                <% for(let i=0;i<allItems.length;++i) { %>
+                     
+                    <% if(!itemsInMyCartId.includes(allItems[i].id)) { %>
+                        <div class="shoeCard">
+                            <div style="overflow: hidden;background-color: blue;height: 100px;">
+                                <img style="width: 100%; height: 100%;" src="assets/shoes/<%=allItems[i].product_name %>.jpg" alt="">
+                            </div>
+                            <div style="display: flex;flex-direction: column;text-align: center;">
+                                <span><%= allItems[i].product_name%></span>
+                                <span>RS <%= allItems[i].price %>/-</span>
+                                <span>
+                                        <button onclick="addItem(' <%= allItems[i].id %> ')" style="width: 100%;cursor: pointer;background-color: skyblue;border-left:none;border-right:none;">add to cart</button>
+
+                                </span>
+                            </div>
+                        </div>
+                    <% } %>
+                 
+             <% } %>
+            </div>
+        </div>
+
+        <div id="cart">
+             <div class="divTitle">
+                <span>CART</span>
+                <div><img width="20" src="assets/cart.png" alt=""></div>
+             </div>
+             <div id="allShoes">
+                <% for(let i=0;i<allItems.length;++i) { %>
+                     
+                        <% if(itemsInMyCartId.includes(allItems[i].id)) { %>
+                            <div class="shoeCard">
+                                <div style="overflow: hidden;background-color: blue;height: 100px;">
+                                    <img style="width: 100%; height: 100%;" src="assets/shoes/<%=allItems[i].product_name %>.jpg" alt="">
+                                </div>
+                                <div style="display: flex;flex-direction: column;text-align: center;">
+                                    <span><%= allItems[i].product_name%></span>
+                                    <span>RS <%= allItems[i].price %>/-</span>
+                                    <span>
+                                        <button style="width: 100%;cursor: pointer;background-color: tomato;border-left:none;border-right:none;" onclick="removeItem(' <%= allItems[i].id %> ')">remove from cart</button>
+
+                                    </span>
+                                </div>
+                            </div>
+                        <% } %>
+                     
+                 <% } %>
+             </div>
+        </div>
+
+    </div>
+</div>
+</center>
+
+<script>
+    async function removeItem(id){
+        
+        let data = await fetch('/removeItemFromCart',{
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify({id})
+        })
+
+        let res = await data.json()
+        if(res.success){
+            location.reload()
+        }
+        else{
+            alert(res.message)
+        }
+    }
+
+    async function addItem(id){
+        
+        let data = await fetch('/addItemToCart',{
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify({id})
+        })
+
+        let res = await data.json()
+        if(res.success){
+            location.reload()
+        }
+        else{
+            alert(res.message)
+        }
+    }
+</script>
+
+<%- include('../partials/lower.ejs') %>
