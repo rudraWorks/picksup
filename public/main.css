@@ -30,22 +30,7 @@ body{
     background-color: white;
   }
 
-  /* @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
-    .nav {
-      -webkit-backdrop-filter: blur(10px);
-      backdrop-filter: blur(10px);
-      background-color: rgba(255, 255, 255, 0.5);  
-    }
-    .nav-links{
-      -webkit-backdrop-filter: blur(10px);
-      backdrop-filter: blur(10px);
-      background-color: rgba(255, 255, 255, 0.5); 
-    }
-    .warning {
-      display: none;
-    }
-  } */
-  
+ 
   .nav > .nav-header {
     display: inline;
   }
@@ -87,6 +72,30 @@ body{
   .nav > #nav-check {
     display: none;
   }
+
+  /* @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+    .nav {
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(15px);
+      background-color: rgba(255, 255, 255, 0.5);  
+    }
+    .nav-links>a{
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(15px);
+      background-color: rgba(255, 255, 255, 0.5);  
+
+    }
+    #home{
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(15px);
+      background-color: rgba(255, 255, 255, 0.5);  
+    }
+
+    .warning {
+      display: none;
+    }
+  }  */
+  
   
   @media (max-width:600px) {
     #home{

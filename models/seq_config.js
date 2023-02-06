@@ -8,13 +8,13 @@ const sequelize = new Sequelize('picksup','root','mysqlpassword',{
 
 sequelize.authenticate()
 .then(()=>{
-    console.log('connected')
+    console.log('connected') 
 })
 .catch(e=>{
     console.log(e)
 })
 
-const usersDb = {}
+const usersDb = {}  
 usersDb.Sequelize = Sequelize
 usersDb.sequelize = sequelize
 usersDb.users = require('./users')(sequelize,DataTypes)

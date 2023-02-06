@@ -1,0 +1,218 @@
+    let cost1Arr=[]
+    if(cost1=='true'){
+        cost1Arr = (await Items.findAll({
+            where:{
+                price:{
+                    [Op.gte]:1500,
+                    [Op.lte]:4000
+                }
+            }
+        }))
+    }
+    let cost2Arr=[]
+    if(cost2=='true')
+    cost2Arr = (await Items.findAll({
+        where:{
+            price:{
+                [Op.gte]:4001,
+                [Op.lte]:7000
+            }
+        }
+    }))
+
+    let cost3Arr=[]
+    if(cost3=='true')
+    cost3Arr = (await Items.findAll({
+        where:{
+            price:{
+                [Op.gte]:7001
+            }
+        }
+    }))
+
+    let cost1ArrTemp = []
+    cost1Arr.map((item)=>{
+        cost1ArrTemp.push(item.dataValues)
+    })
+    cost1Arr=cost1ArrTemp
+
+    let cost2ArrTemp = []
+    cost2Arr.map((item)=>{
+        cost2ArrTemp.push(item.dataValues)
+    })
+    cost2Arr=cost2ArrTemp
+
+    let cost3ArrTemp = []
+    cost3Arr.map((item)=>{
+        cost3ArrTemp.push(item.dataValues)
+    })
+    cost3Arr=cost3ArrTemp
+
+
+    /// type //
+    let type1Arr=[]
+    if(type1=='true'){
+        type1Arr = (await Items.findAll({
+            where:{
+               type:'sneaker'
+            }
+        }))
+    }
+
+    let type2Arr=[]
+    if(type2=='true'){
+        type2Arr = (await Items.findAll({
+            where:{
+               type:'loafer'
+            }
+        }))
+    }
+
+    let type1ArrTemp = []
+    type1Arr.map((item)=>{
+        type1ArrTemp.push(item.dataValues)
+    })
+    type1Arr=type1ArrTemp
+
+
+    let type2ArrTemp = []
+    type2Arr.map((item)=>{
+        type2ArrTemp.push(item.dataValues)
+    })
+    type2Arr=type2ArrTemp
+
+    // color 
+
+    let color1Arr=[]
+    if(color1=='true'){
+        color1Arr = (await Items.findAll({
+            where:{
+               color:'red'
+            }
+        }))
+    }
+
+    let color2Arr=[]
+    if(color2=='true'){
+        color2Arr = (await Items.findAll({
+            where:{
+               color:'blue'
+            }
+        }))
+    }
+
+
+    let color3Arr=[]
+    if(color3=='true'){
+        color3Arr = (await Items.findAll({
+            where:{
+               color:'yellow'
+            }
+        }))
+    }
+
+
+    let color4Arr=[]
+    if(color4=='true'){
+        color4Arr = (await Items.findAll({
+            where:{
+               color:'green'
+            }
+        }))
+    }
+
+    let color1TempArr = []
+    color1Arr.map((item)=>{
+        color1TempArr.push(item.dataValues)
+    })
+    color1Arr=color1TempArr
+
+ 
+    let color2TempArr = []
+    color2Arr.map((item)=>{
+        color2TempArr.push(item.dataValues)
+    })
+    color2Arr=color2TempArr
+
+
+    let color3TempArr = []
+    color1Arr.map((item)=>{
+        color3TempArr.push(item.dataValues)
+    })
+    color3Arr=color3TempArr
+
+
+    let color4TempArr = []
+    color4Arr.map((item)=>{
+        color4TempArr.push(item.dataValues)
+    })
+    color4Arr=color4TempArr
+
+    ////
+
+
+    let allItems = []
+    let addedProducts=[]
+    cost1Arr.map((item)=>{
+        if(!addedProducts.includes(item.id)){
+            allItems.push(item)
+            addedProducts.push(item.id)
+        }
+    })
+
+    cost2Arr.map((item)=>{
+        if(!addedProducts.includes(item.id)){
+            allItems.push(item)
+            addedProducts.push(item.id)
+        }
+    })
+
+    cost3Arr.map((item)=>{
+        if(!addedProducts.includes(item.id)){
+            allItems.push(item)
+            addedProducts.push(item.id)
+        }
+    })
+
+    type1Arr.map((item)=>{
+        if(!addedProducts.includes(item.id)){
+            allItems.push(item)
+            addedProducts.push(item.id)
+        }
+    })
+
+    type2Arr.map((item)=>{
+        if(!addedProducts.includes(item.id)){
+            allItems.push(item)
+            addedProducts.push(item.id)
+        }
+    })
+
+
+    color1Arr.map((item)=>{
+        if(!addedProducts.includes(item.id)){
+            allItems.push(item)
+            addedProducts.push(item.id)
+        }
+    })
+
+    color2Arr.map((item)=>{
+        if(!addedProducts.includes(item.id)){
+            allItems.push(item)
+            addedProducts.push(item.id)
+        }
+    })
+
+    color3Arr.map((item)=>{
+        if(!addedProducts.includes(item.id)){
+            allItems.push(item)
+            addedProducts.push(item.id)
+        }
+    })
+
+    color4Arr.map((item)=>{
+        if(!addedProducts.includes(item.id)){
+            allItems.push(item)
+            addedProducts.push(item.id)
+        }
+    })

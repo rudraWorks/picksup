@@ -6,8 +6,8 @@
   <script>
     // alert(location.href)
     let pathname=new URL (location.href).pathname.slice(1)
-    console.log(pathname)
     try{
+      if(pathname!='myProfile')
     document.getElementById(pathname).style.border="1px solid black"
     }
     catch(e){}

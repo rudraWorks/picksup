@@ -11,6 +11,7 @@ router.get('/journey',generalController.journey)
 router.get('/store',generalController.store)
 router.post('/removeItemFromCart',generalController.removeItemFromCart)
 router.post('/addItemToCart',generalController.addItemToCart)
+router.post('/filterItems',generalController.filterItems)
 
 module.exports=router
 

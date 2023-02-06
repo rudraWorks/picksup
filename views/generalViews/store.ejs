@@ -36,7 +36,7 @@
     #items{
         /* background-color: green; */
         height: 100%;
-        width: 55%;
+        width: 50%;
         display: flex;
         flex-direction: column;
     }
@@ -44,7 +44,7 @@
     #cart{
         /* background-color: skyblue; */
         height: 100%;
-        width: 20%;
+        width: 25%;
         display: flex;
         flex-direction: column;
     }
@@ -92,6 +92,9 @@
         display: inline-block;
         margin-right: 10px;
     }
+    #color{
+        margin-top: 20px;
+    }
     #color>div>div>input{
         margin-left: 25%;
         margin-top: 25%;
@@ -99,7 +102,8 @@
     }
     #type{
         text-align: left;
-        padding: 8px;
+        padding: 2px;
+        margin-top: 20px;
     }
     .shoeCard{
         width: 150px;
@@ -109,6 +113,7 @@
         margin: 10px;
         border: 1px solid black;
         color: rgb(0, 0, 0);
+        border-radius: 15px;
     }
     #allShoes{
         /* background-color: red; */
@@ -129,47 +134,49 @@
                 <span>FILTER</span>
                 <div><img width="20" src="assets/filter.png" alt=""></div>
              </div>       
-             <div id="filterCategories">
-                <div id="cost">
-                    <span style="font-size: 20px;">Cost</span>
-                    <div><input type="checkbox"> <span>Rs 1500-4000</span></div>
-                    <div><input type="checkbox"> <span>Rs 1500-4000</span></div>
-                    <div><input type="checkbox"> <span>Rs 1500-4000</span></div>
-                </div>
-
-                <div id="color">
-                    <span style="font-size: 20px;"> Color</span>
-                    <div> 
-                        <div style="background-color: red;"><input type="checkbox"></div>
-                        <div style="background-color: blue;"><input type="checkbox"></div>
-                        <div style="background-color: yellow;"><input type="checkbox"></div>
-                        <div style="background-color: green;"><input type="checkbox"></div>
-                        <div style="background-color: orange;"><input type="checkbox"></div>
+             <form  id="filterForm">
+         
+                <div id="filterCategories">
+                    
+                    <div id="cost">
+                        <span style="font-size: 20px;">Cost</span>
+                        <div><input id="cost1" type="checkbox"> <span>Rs 1500-4000</span></div>
+                        <div><input id="cost2" type="checkbox"> <span>Rs 4001-7000</span></div>
+                        <div><input id="cost3" type="checkbox"> <span>Rs 7001+</span></div>
                     </div>
-                </div>  
-             </div>   
-            
-             <div id="type">
-                <span style="font-size:20px;">Type</span>
-                <div><input type="checkbox"> <span>Sneakers</span></div>
-                <div><input type="checkbox"> <span>Loafers</span></div>
-             </div>
 
-             <div id="submit">
-                <button style="background-color: black;color: white;padding: 5px;cursor: pointer;">Apply</button>
-             </div>
-
+                    <div id="color">
+                        <span style="font-size: 20px;"> Color</span>
+                        <div> 
+                            <div  style="background-color: red;"><input id="color1" type="checkbox"></div>
+                            <div  style="background-color: blue;"><input id="color2" type="checkbox"></div>
+                            <div  style="background-color: yellow;"><input id="color3" type="checkbox"></div>
+                            <div  style="background-color: green;"><input id="color4" type="checkbox"></div>
+                        </div>
+                    </div>  
+           
+                    <div id="type">
+                        <span style="font-size:20px;">Type</span>
+                        <div><input id="type1" type="checkbox"> <span>Sneakers</span></div>
+                        <div><input id="type2" type="checkbox"> <span>Loafers</span></div>
+                    </div>
+                </div>   
+                
+                <div id="submit">
+                    <button type="submit" style="background-color: black;color: white;padding: 5px;cursor: pointer;">Apply</button>
+                </div>
+             </form>
         </div>  
 
         <div id="items">
              <div class="divTitle">
                 <span>SHOES</span>
-                <div style="width: 200px;display: flex; align-items: center;">
-                    <input placeholder="search item.." type="text" style="width: 80%;padding: 10px;margin-right: 10px;font-size: 15px; border: 1px solid black; border-radius: 10px;outline: none; height: 20px;">
+                <div style="width: 40px;margin-left: auto;">
                     <img  style="width:25px;cursor: pointer;" src="assets/search.png"  alt="">
                 </div>     
              </div>
             <div id="allShoes">
+
                 <% for(let i=0;i<allItems.length;++i) { %>
                      
                     <% if(!itemsInMyCartId.includes(allItems[i].id)) { %>
@@ -198,25 +205,31 @@
                 <div><img width="20" src="assets/cart.png" alt=""></div>
              </div>
              <div id="allShoes">
-                <% for(let i=0;i<allItems.length;++i) { %>
+                <% for(let i=0;i<itemsInMyCart.length;++i) { %>
                      
-                        <% if(itemsInMyCartId.includes(allItems[i].id)) { %>
                             <div class="shoeCard">
                                 <div style="overflow: hidden;background-color: blue;height: 100px;">
-                                    <img style="width: 100%; height: 100%;" src="assets/shoes/<%=allItems[i].product_name %>.jpg" alt="">
+                                    <img style="width: 100%; height: 100%;" src="assets/shoes/<%=itemsInMyCart[i].product_name%>.jpg" alt="">
                                 </div>
                                 <div style="display: flex;flex-direction: column;text-align: center;">
-                                    <span><%= allItems[i].product_name%></span>
-                                    <span>RS <%= allItems[i].price %>/-</span>
+                                    <span><%= itemsInMyCart[i].product_name%></span>
+                                    <span>RS <%= itemsInMyCart[i].price %>/-</span>
                                     <span>
-                                        <button style="width: 100%;cursor: pointer;background-color: tomato;border-left:none;border-right:none;" onclick="removeItem(' <%= allItems[i].id %> ')">remove from cart</button>
+                                        <button style="width: 100%;cursor: pointer;background-color: tomato;border-left:none;border-right:none;" onclick="removeItem(' <%= itemsInMyCart[i].id %> ')">remove from cart</button>
 
                                     </span>
                                 </div>
                             </div>
-                        <% } %>
+                <% } %>
                      
-                 <% } %>
+             </div>
+             <div>
+                <% if(itemsInMyCartId.length>0){ %>
+                    <button style="background-color: black;margin-top: 10px;color: white;padding: 5px;cursor: pointer;">Order now</button>
+                <% } else { %>
+                    <br><br>
+                    <span>cart is empty!</span>
+                <% } %>
              </div>
         </div>
 
@@ -259,6 +272,104 @@
         }
     }
 
+    // async function filterFunction(){
+
+        // let cost1 = document.getElementById('cost1').checked
+        // let cost2 = document.getElementById('cost2').checked
+        // let cost3 = document.getElementById('cost3').checked
+
+        // let type1 = document.getElementById('type1').checked
+        // let type2 = document.getElementById('type2').checked
+
+        // let color1 = document.getElementById('color1').checked
+        // let color2 = document.getElementById('color2').checked
+        // let color3 = document.getElementById('color3').checked
+        // let color4 = document.getElementById('color4').checked
+
+    //     let data = await fetch('/filterItems',{
+    //         headers:{"Content-Type":"application/json"},
+    //         method:"POST",
+    //         body:JSON.stringify({cost1,cost2,cost3,type1,type2,color1,color2,color3,color4})
+    //     })
+
+    //     let res = await data.json()
+    //     if(res.success)
+    //         location.reload()
+    //     else{
+    //         alert(res.message)
+    //     }
+    // }
+
+    let filterForm = document.getElementById('filterForm')
+    filterForm.addEventListener('submit',async(e)=>{
+        e.preventDefault()
+        let cost1 = document.getElementById('cost1').checked
+        let cost2 = document.getElementById('cost2').checked
+        let cost3 = document.getElementById('cost3').checked
+
+        let type1 = document.getElementById('type1').checked
+        let type2 = document.getElementById('type2').checked
+
+        let color1 = document.getElementById('color1').checked
+        let color2 = document.getElementById('color2').checked
+        let color3 = document.getElementById('color3').checked
+        let color4 = document.getElementById('color4').checked
+        
+        let newForm = document.createElement('form')
+
+
+        let cost_1 = document.createElement('input')
+        cost_1.setAttribute('name','cost1')
+        cost_1.value=cost1
+        newForm.append(cost_1)
+
+        let cost_2 = document.createElement('input')
+        cost_2.setAttribute('name','cost2')
+        cost_2.value=cost2
+        newForm.append(cost_2)
+
+        let cost_3 = document.createElement('input')
+        cost_3.setAttribute('name','cost3')
+        cost_3.value=cost3
+        newForm.append(cost_3)
+
+        let type_1 = document.createElement('input')
+        type_1.setAttribute('name','type1')
+        type_1.value=type1
+        newForm.append(type_1)
+
+        let type_2 = document.createElement('input')
+        type_2.setAttribute('name','type2')
+        type_2.value=type2
+        newForm.append(type_2)
+
+        let color_1 = document.createElement('input')
+        color_1.setAttribute('name','color1')
+        color_1.value=color1
+        newForm.append(color_1)
+
+        let color_2 = document.createElement('input')
+        color_2.setAttribute('name','color2')
+        color_2.value=color2
+        newForm.append(color_2)
+
+        let color_3 = document.createElement('input')
+        color_3.setAttribute('name','color3')
+        color_3.value=color3
+        newForm.append(color_3)
+
+        let color_4 = document.createElement('input')
+        color_4.setAttribute('name','color4')
+        color_4.value=color4
+        newForm.append(color_4)
+
+
+        newForm.setAttribute('action','/filterItems')
+        newForm.setAttribute('method','POST')
+        document.body.append(newForm)
+        newForm.submit()
+
+    })
 
 </script>
 
