@@ -1,3 +1,5 @@
+// this file is responsible for handling all user authentication related tasks like login, signup, logout, myProfile
+
 const jwt = require('jsonwebtoken')
 const {usersDb,itemsDb} = require('../models/seq_config')
 const {Sequelize,Op} = require('sequelize')
@@ -42,7 +44,9 @@ module.exports.registerPost = async (req,res) =>{
 
 
     let Users = usersDb.users
-    let fetchUser = await Users.findOne({username})
+    let fetchUser = (await Users.findOne({where:{
+        username:username
+    }}))
     if(fetchUser)
         return res.json({success:false,message:"this username is already registered!",errorCode:"username"})
 
@@ -86,55 +90,10 @@ module.exports.myprofile = async (req,res) =>{
     if(!res.locals.isAuthenticated)
         return res.render('generalViews/404')
 
-    // let Test = itemsDb.items
-    // let it = await Test.findAll({})
-    // return res.json(it)
-    // await Test.create({username:'testing'})
-    // let Users = db.users
-
-    // // let data = await Users.build({username,password,email,fullname})
-    // // await data.save()
-
-    // let data = await Users.create({username:'me',email:'sdaaf@dafad.com',fullname:'dfa dfa dafa',password:'dfadfa4'})
-    // console.log(data.dataValues)
-
-    // let data = await Users.update({fullname:'final'},{
-    //     where:{
-    //         username:'testingUser'
-    //     }
-    // })
-
-    // await Users.destroy({
-    //     where:{
-    //         username:'me'
-    //     }
-    // })
-
-    // await Users.destroy({
-    //     truncate:true
-    // })
-
-    // let data = await Users.findAll({
-    //     attributes:[
-    //         'id',
-    //         'username',
-    //         'email',
-    //         ['fullname','Full name of the user']
-    //     ],
-    //     where:{
-    //         // id:[1,2,3]
-    //         id:{
-    //             [Op.gt]:2
-    //         }
-    //     }
-    // }) // findOne({})
-
-    // return res.json({data})
-    // console.log(data)
-
     let Users = usersDb.users
-    let fetchUser = await Users.findOne({username:res.locals.user})
-    // console.log(fetchUser)
+    let fetchUser = await Users.findOne({where:{
+        username:res.locals.user
+    }})
     return res.render('auth/myprofile',fetchUser.dataValues)
 }
 

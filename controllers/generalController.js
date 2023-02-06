@@ -1,3 +1,5 @@
+// this file is responsible for handling all general routes like home page, store page, contact page, team page etc
+
 const {itemsDb,cartDb} = require('../models/seq_config')
 const {Op} = require('sequelize')
 

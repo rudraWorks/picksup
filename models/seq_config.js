@@ -1,3 +1,5 @@
+// this file is necessary for configuration of MySQL connection using Sequelize ORM
+
 const {Sequelize,DataTypes} = require('sequelize')
 
 const sequelize = new Sequelize('picksup','root','mysqlpassword',{

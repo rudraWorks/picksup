@@ -1,3 +1,5 @@
+// checkAuth middlware is neccessary to protect our app from unauthenticated and malacious logins
+
 const jwt = require('jsonwebtoken')
 
 module.exports.checkAuth =  (req,res,next) =>{
